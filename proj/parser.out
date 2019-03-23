@@ -1,0 +1,1510 @@
+Created by PLY version 3.4 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    DOTADD
+    DOTSUB
+    DOTMUL
+    DOTDIV
+    COMMENT
+    IF
+    THEN
+    ELSE
+    WHILE
+    FOR
+    BREAK
+    CONTINUE
+    RETURN
+    ZEROES
+    ONES
+    EYE
+
+Grammar
+
+Rule 0     S' -> expression
+Rule 1     expression -> ID = expression
+Rule 2     expression -> ID ADDASSIGN expression
+Rule 3     expression -> ID SUBASSIGN expression
+Rule 4     expression -> ID MULASSIGN expression
+Rule 5     expression -> ID DIVASSIGN expression
+Rule 6     expression -> term
+Rule 7     expression -> ID
+Rule 8     expression -> expression + expression
+Rule 9     expression -> expression - expression
+Rule 10    expression -> expression * expression
+Rule 11    expression -> expression / expression
+Rule 12    expression -> expression > expression
+Rule 13    expression -> expression < expression
+Rule 14    expression -> expression GREATEREQUAL expression
+Rule 15    expression -> expression LOWEREQUAL expression
+Rule 16    expression -> expression NOTEQUAL expression
+Rule 17    expression -> expression EQUAL expression
+Rule 18    expression -> ( expression )
+Rule 19    term -> INTNUM
+Rule 20    term -> FLOATNUM
+Rule 21    term -> STRING
+
+Terminals, with rules where they appear
+
+(                    : 18
+)                    : 18
+*                    : 10
++                    : 8
+-                    : 9
+/                    : 11
+<                    : 13
+=                    : 1
+>                    : 12
+ADDASSIGN            : 2
+BREAK                : 
+COMMENT              : 
+CONTINUE             : 
+DIVASSIGN            : 5
+DOTADD               : 
+DOTDIV               : 
+DOTMUL               : 
+DOTSUB               : 
+ELSE                 : 
+EQUAL                : 17
+EYE                  : 
+FLOATNUM             : 20
+FOR                  : 
+GREATEREQUAL         : 14
+ID                   : 1 2 3 4 5 7
+IF                   : 
+INTNUM               : 19
+LOWEREQUAL           : 15
+MULASSIGN            : 4
+NOTEQUAL             : 16
+ONES                 : 
+RETURN               : 
+STRING               : 21
+SUBASSIGN            : 3
+THEN                 : 
+WHILE                : 
+ZEROES               : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+expression           : 1 2 3 4 5 8 8 9 9 10 10 11 11 12 12 13 13 14 14 15 15 16 16 17 17 18 0
+term                 : 6
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . expression
+    (1) expression -> . ID = expression
+    (2) expression -> . ID ADDASSIGN expression
+    (3) expression -> . ID SUBASSIGN expression
+    (4) expression -> . ID MULASSIGN expression
+    (5) expression -> . ID DIVASSIGN expression
+    (6) expression -> . term
+    (7) expression -> . ID
+    (8) expression -> . expression + expression
+    (9) expression -> . expression - expression
+    (10) expression -> . expression * expression
+    (11) expression -> . expression / expression
+    (12) expression -> . expression > expression
+    (13) expression -> . expression < expression
+    (14) expression -> . expression GREATEREQUAL expression
+    (15) expression -> . expression LOWEREQUAL expression
+    (16) expression -> . expression NOTEQUAL expression
+    (17) expression -> . expression EQUAL expression
+    (18) expression -> . ( expression )
+    (19) term -> . INTNUM
+    (20) term -> . FLOATNUM
+    (21) term -> . STRING
+
+    ID              shift and go to state 2
+    (               shift and go to state 4
+    INTNUM          shift and go to state 5
+    FLOATNUM        shift and go to state 6
+    STRING          shift and go to state 7
+
+    expression                     shift and go to state 1
+    term                           shift and go to state 3
+
+state 1
+
+    (0) S' -> expression .
+    (8) expression -> expression . + expression
+    (9) expression -> expression . - expression
+    (10) expression -> expression . * expression
+    (11) expression -> expression . / expression
+    (12) expression -> expression . > expression
+    (13) expression -> expression . < expression
+    (14) expression -> expression . GREATEREQUAL expression
+    (15) expression -> expression . LOWEREQUAL expression
+    (16) expression -> expression . NOTEQUAL expression
+    (17) expression -> expression . EQUAL expression
+
+    +               shift and go to state 8
+    -               shift and go to state 9
+    *               shift and go to state 10
+    /               shift and go to state 11
+    >               shift and go to state 12
+    <               shift and go to state 13
+    GREATEREQUAL    shift and go to state 14
+    LOWEREQUAL      shift and go to state 15
+    NOTEQUAL        shift and go to state 16
+    EQUAL           shift and go to state 17
+
+
+state 2
+
+    (1) expression -> ID . = expression
+    (2) expression -> ID . ADDASSIGN expression
+    (3) expression -> ID . SUBASSIGN expression
+    (4) expression -> ID . MULASSIGN expression
+    (5) expression -> ID . DIVASSIGN expression
+    (7) expression -> ID .
+
+    =               shift and go to state 18
+    ADDASSIGN       shift and go to state 19
+    SUBASSIGN       shift and go to state 20
+    MULASSIGN       shift and go to state 21
+    DIVASSIGN       shift and go to state 22
+    +               reduce using rule 7 (expression -> ID .)
+    -               reduce using rule 7 (expression -> ID .)
+    *               reduce using rule 7 (expression -> ID .)
+    /               reduce using rule 7 (expression -> ID .)
+    >               reduce using rule 7 (expression -> ID .)
+    <               reduce using rule 7 (expression -> ID .)
+    GREATEREQUAL    reduce using rule 7 (expression -> ID .)
+    LOWEREQUAL      reduce using rule 7 (expression -> ID .)
+    NOTEQUAL        reduce using rule 7 (expression -> ID .)
+    EQUAL           reduce using rule 7 (expression -> ID .)
+    $end            reduce using rule 7 (expression -> ID .)
+    )               reduce using rule 7 (expression -> ID .)
+
+
+state 3
+
+    (6) expression -> term .
+
+    +               reduce using rule 6 (expression -> term .)
+    -               reduce using rule 6 (expression -> term .)
+    *               reduce using rule 6 (expression -> term .)
+    /               reduce using rule 6 (expression -> term .)
+    >               reduce using rule 6 (expression -> term .)
+    <               reduce using rule 6 (expression -> term .)
+    GREATEREQUAL    reduce using rule 6 (expression -> term .)
+    LOWEREQUAL      reduce using rule 6 (expression -> term .)
+    NOTEQUAL        reduce using rule 6 (expression -> term .)
+    EQUAL           reduce using rule 6 (expression -> term .)
+    $end            reduce using rule 6 (expression -> term .)
+    )               reduce using rule 6 (expression -> term .)
+
+
+state 4
+
+    (18) expression -> ( . expression )
+    (1) expression -> . ID = expression
+    (2) expression -> . ID ADDASSIGN expression
+    (3) expression -> . ID SUBASSIGN expression
+    (4) expression -> . ID MULASSIGN expression
+    (5) expression -> . ID DIVASSIGN expression
+    (6) expression -> . term
+    (7) expression -> . ID
+    (8) expression -> . expression + expression
+    (9) expression -> . expression - expression
+    (10) expression -> . expression * expression
+    (11) expression -> . expression / expression
+    (12) expression -> . expression > expression
+    (13) expression -> . expression < expression
+    (14) expression -> . expression GREATEREQUAL expression
+    (15) expression -> . expression LOWEREQUAL expression
+    (16) expression -> . expression NOTEQUAL expression
+    (17) expression -> . expression EQUAL expression
+    (18) expression -> . ( expression )
+    (19) term -> . INTNUM
+    (20) term -> . FLOATNUM
+    (21) term -> . STRING
+
+    ID              shift and go to state 2
+    (               shift and go to state 4
+    INTNUM          shift and go to state 5
+    FLOATNUM        shift and go to state 6
+    STRING          shift and go to state 7
+
+    expression                     shift and go to state 23
+    term                           shift and go to state 3
+
+state 5
+
+    (19) term -> INTNUM .
+
+    +               reduce using rule 19 (term -> INTNUM .)
+    -               reduce using rule 19 (term -> INTNUM .)
+    *               reduce using rule 19 (term -> INTNUM .)
+    /               reduce using rule 19 (term -> INTNUM .)
+    >               reduce using rule 19 (term -> INTNUM .)
+    <               reduce using rule 19 (term -> INTNUM .)
+    GREATEREQUAL    reduce using rule 19 (term -> INTNUM .)
+    LOWEREQUAL      reduce using rule 19 (term -> INTNUM .)
+    NOTEQUAL        reduce using rule 19 (term -> INTNUM .)
+    EQUAL           reduce using rule 19 (term -> INTNUM .)
+    $end            reduce using rule 19 (term -> INTNUM .)
+    )               reduce using rule 19 (term -> INTNUM .)
+
+
+state 6
+
+    (20) term -> FLOATNUM .
+
+    +               reduce using rule 20 (term -> FLOATNUM .)
+    -               reduce using rule 20 (term -> FLOATNUM .)
+    *               reduce using rule 20 (term -> FLOATNUM .)
+    /               reduce using rule 20 (term -> FLOATNUM .)
+    >               reduce using rule 20 (term -> FLOATNUM .)
+    <               reduce using rule 20 (term -> FLOATNUM .)
+    GREATEREQUAL    reduce using rule 20 (term -> FLOATNUM .)
+    LOWEREQUAL      reduce using rule 20 (term -> FLOATNUM .)
+    NOTEQUAL        reduce using rule 20 (term -> FLOATNUM .)
+    EQUAL           reduce using rule 20 (term -> FLOATNUM .)
+    $end            reduce using rule 20 (term -> FLOATNUM .)
+    )               reduce using rule 20 (term -> FLOATNUM .)
+
+
+state 7
+
+    (21) term -> STRING .
+
+    +               reduce using rule 21 (term -> STRING .)
+    -               reduce using rule 21 (term -> STRING .)
+    *               reduce using rule 21 (term -> STRING .)
+    /               reduce using rule 21 (term -> STRING .)
+    >               reduce using rule 21 (term -> STRING .)
+    <               reduce using rule 21 (term -> STRING .)
+    GREATEREQUAL    reduce using rule 21 (term -> STRING .)
+    LOWEREQUAL      reduce using rule 21 (term -> STRING .)
+    NOTEQUAL        reduce using rule 21 (term -> STRING .)
+    EQUAL           reduce using rule 21 (term -> STRING .)
+    $end            reduce using rule 21 (term -> STRING .)
+    )               reduce using rule 21 (term -> STRING .)
+
+
+state 8
+
+    (8) expression -> expression + . expression
+    (1) expression -> . ID = expression
+    (2) expression -> . ID ADDASSIGN expression
+    (3) expression -> . ID SUBASSIGN expression
+    (4) expression -> . ID MULASSIGN expression
+    (5) expression -> . ID DIVASSIGN expression
+    (6) expression -> . term
+    (7) expression -> . ID
+    (8) expression -> . expression + expression
+    (9) expression -> . expression - expression
+    (10) expression -> . expression * expression
+    (11) expression -> . expression / expression
+    (12) expression -> . expression > expression
+    (13) expression -> . expression < expression
+    (14) expression -> . expression GREATEREQUAL expression
+    (15) expression -> . expression LOWEREQUAL expression
+    (16) expression -> . expression NOTEQUAL expression
+    (17) expression -> . expression EQUAL expression
+    (18) expression -> . ( expression )
+    (19) term -> . INTNUM
+    (20) term -> . FLOATNUM
+    (21) term -> . STRING
+
+    ID              shift and go to state 2
+    (               shift and go to state 4
+    INTNUM          shift and go to state 5
+    FLOATNUM        shift and go to state 6
+    STRING          shift and go to state 7
+
+    expression                     shift and go to state 24
+    term                           shift and go to state 3
+
+state 9
+
+    (9) expression -> expression - . expression
+    (1) expression -> . ID = expression
+    (2) expression -> . ID ADDASSIGN expression
+    (3) expression -> . ID SUBASSIGN expression
+    (4) expression -> . ID MULASSIGN expression
+    (5) expression -> . ID DIVASSIGN expression
+    (6) expression -> . term
+    (7) expression -> . ID
+    (8) expression -> . expression + expression
+    (9) expression -> . expression - expression
+    (10) expression -> . expression * expression
+    (11) expression -> . expression / expression
+    (12) expression -> . expression > expression
+    (13) expression -> . expression < expression
+    (14) expression -> . expression GREATEREQUAL expression
+    (15) expression -> . expression LOWEREQUAL expression
+    (16) expression -> . expression NOTEQUAL expression
+    (17) expression -> . expression EQUAL expression
+    (18) expression -> . ( expression )
+    (19) term -> . INTNUM
+    (20) term -> . FLOATNUM
+    (21) term -> . STRING
+
+    ID              shift and go to state 2
+    (               shift and go to state 4
+    INTNUM          shift and go to state 5
+    FLOATNUM        shift and go to state 6
+    STRING          shift and go to state 7
+
+    expression                     shift and go to state 25
+    term                           shift and go to state 3
+
+state 10
+
+    (10) expression -> expression * . expression
+    (1) expression -> . ID = expression
+    (2) expression -> . ID ADDASSIGN expression
+    (3) expression -> . ID SUBASSIGN expression
+    (4) expression -> . ID MULASSIGN expression
+    (5) expression -> . ID DIVASSIGN expression
+    (6) expression -> . term
+    (7) expression -> . ID
+    (8) expression -> . expression + expression
+    (9) expression -> . expression - expression
+    (10) expression -> . expression * expression
+    (11) expression -> . expression / expression
+    (12) expression -> . expression > expression
+    (13) expression -> . expression < expression
+    (14) expression -> . expression GREATEREQUAL expression
+    (15) expression -> . expression LOWEREQUAL expression
+    (16) expression -> . expression NOTEQUAL expression
+    (17) expression -> . expression EQUAL expression
+    (18) expression -> . ( expression )
+    (19) term -> . INTNUM
+    (20) term -> . FLOATNUM
+    (21) term -> . STRING
+
+    ID              shift and go to state 2
+    (               shift and go to state 4
+    INTNUM          shift and go to state 5
+    FLOATNUM        shift and go to state 6
+    STRING          shift and go to state 7
+
+    expression                     shift and go to state 26
+    term                           shift and go to state 3
+
+state 11
+
+    (11) expression -> expression / . expression
+    (1) expression -> . ID = expression
+    (2) expression -> . ID ADDASSIGN expression
+    (3) expression -> . ID SUBASSIGN expression
+    (4) expression -> . ID MULASSIGN expression
+    (5) expression -> . ID DIVASSIGN expression
+    (6) expression -> . term
+    (7) expression -> . ID
+    (8) expression -> . expression + expression
+    (9) expression -> . expression - expression
+    (10) expression -> . expression * expression
+    (11) expression -> . expression / expression
+    (12) expression -> . expression > expression
+    (13) expression -> . expression < expression
+    (14) expression -> . expression GREATEREQUAL expression
+    (15) expression -> . expression LOWEREQUAL expression
+    (16) expression -> . expression NOTEQUAL expression
+    (17) expression -> . expression EQUAL expression
+    (18) expression -> . ( expression )
+    (19) term -> . INTNUM
+    (20) term -> . FLOATNUM
+    (21) term -> . STRING
+
+    ID              shift and go to state 2
+    (               shift and go to state 4
+    INTNUM          shift and go to state 5
+    FLOATNUM        shift and go to state 6
+    STRING          shift and go to state 7
+
+    expression                     shift and go to state 27
+    term                           shift and go to state 3
+
+state 12
+
+    (12) expression -> expression > . expression
+    (1) expression -> . ID = expression
+    (2) expression -> . ID ADDASSIGN expression
+    (3) expression -> . ID SUBASSIGN expression
+    (4) expression -> . ID MULASSIGN expression
+    (5) expression -> . ID DIVASSIGN expression
+    (6) expression -> . term
+    (7) expression -> . ID
+    (8) expression -> . expression + expression
+    (9) expression -> . expression - expression
+    (10) expression -> . expression * expression
+    (11) expression -> . expression / expression
+    (12) expression -> . expression > expression
+    (13) expression -> . expression < expression
+    (14) expression -> . expression GREATEREQUAL expression
+    (15) expression -> . expression LOWEREQUAL expression
+    (16) expression -> . expression NOTEQUAL expression
+    (17) expression -> . expression EQUAL expression
+    (18) expression -> . ( expression )
+    (19) term -> . INTNUM
+    (20) term -> . FLOATNUM
+    (21) term -> . STRING
+
+    ID              shift and go to state 2
+    (               shift and go to state 4
+    INTNUM          shift and go to state 5
+    FLOATNUM        shift and go to state 6
+    STRING          shift and go to state 7
+
+    expression                     shift and go to state 28
+    term                           shift and go to state 3
+
+state 13
+
+    (13) expression -> expression < . expression
+    (1) expression -> . ID = expression
+    (2) expression -> . ID ADDASSIGN expression
+    (3) expression -> . ID SUBASSIGN expression
+    (4) expression -> . ID MULASSIGN expression
+    (5) expression -> . ID DIVASSIGN expression
+    (6) expression -> . term
+    (7) expression -> . ID
+    (8) expression -> . expression + expression
+    (9) expression -> . expression - expression
+    (10) expression -> . expression * expression
+    (11) expression -> . expression / expression
+    (12) expression -> . expression > expression
+    (13) expression -> . expression < expression
+    (14) expression -> . expression GREATEREQUAL expression
+    (15) expression -> . expression LOWEREQUAL expression
+    (16) expression -> . expression NOTEQUAL expression
+    (17) expression -> . expression EQUAL expression
+    (18) expression -> . ( expression )
+    (19) term -> . INTNUM
+    (20) term -> . FLOATNUM
+    (21) term -> . STRING
+
+    ID              shift and go to state 2
+    (               shift and go to state 4
+    INTNUM          shift and go to state 5
+    FLOATNUM        shift and go to state 6
+    STRING          shift and go to state 7
+
+    expression                     shift and go to state 29
+    term                           shift and go to state 3
+
+state 14
+
+    (14) expression -> expression GREATEREQUAL . expression
+    (1) expression -> . ID = expression
+    (2) expression -> . ID ADDASSIGN expression
+    (3) expression -> . ID SUBASSIGN expression
+    (4) expression -> . ID MULASSIGN expression
+    (5) expression -> . ID DIVASSIGN expression
+    (6) expression -> . term
+    (7) expression -> . ID
+    (8) expression -> . expression + expression
+    (9) expression -> . expression - expression
+    (10) expression -> . expression * expression
+    (11) expression -> . expression / expression
+    (12) expression -> . expression > expression
+    (13) expression -> . expression < expression
+    (14) expression -> . expression GREATEREQUAL expression
+    (15) expression -> . expression LOWEREQUAL expression
+    (16) expression -> . expression NOTEQUAL expression
+    (17) expression -> . expression EQUAL expression
+    (18) expression -> . ( expression )
+    (19) term -> . INTNUM
+    (20) term -> . FLOATNUM
+    (21) term -> . STRING
+
+    ID              shift and go to state 2
+    (               shift and go to state 4
+    INTNUM          shift and go to state 5
+    FLOATNUM        shift and go to state 6
+    STRING          shift and go to state 7
+
+    expression                     shift and go to state 30
+    term                           shift and go to state 3
+
+state 15
+
+    (15) expression -> expression LOWEREQUAL . expression
+    (1) expression -> . ID = expression
+    (2) expression -> . ID ADDASSIGN expression
+    (3) expression -> . ID SUBASSIGN expression
+    (4) expression -> . ID MULASSIGN expression
+    (5) expression -> . ID DIVASSIGN expression
+    (6) expression -> . term
+    (7) expression -> . ID
+    (8) expression -> . expression + expression
+    (9) expression -> . expression - expression
+    (10) expression -> . expression * expression
+    (11) expression -> . expression / expression
+    (12) expression -> . expression > expression
+    (13) expression -> . expression < expression
+    (14) expression -> . expression GREATEREQUAL expression
+    (15) expression -> . expression LOWEREQUAL expression
+    (16) expression -> . expression NOTEQUAL expression
+    (17) expression -> . expression EQUAL expression
+    (18) expression -> . ( expression )
+    (19) term -> . INTNUM
+    (20) term -> . FLOATNUM
+    (21) term -> . STRING
+
+    ID              shift and go to state 2
+    (               shift and go to state 4
+    INTNUM          shift and go to state 5
+    FLOATNUM        shift and go to state 6
+    STRING          shift and go to state 7
+
+    expression                     shift and go to state 31
+    term                           shift and go to state 3
+
+state 16
+
+    (16) expression -> expression NOTEQUAL . expression
+    (1) expression -> . ID = expression
+    (2) expression -> . ID ADDASSIGN expression
+    (3) expression -> . ID SUBASSIGN expression
+    (4) expression -> . ID MULASSIGN expression
+    (5) expression -> . ID DIVASSIGN expression
+    (6) expression -> . term
+    (7) expression -> . ID
+    (8) expression -> . expression + expression
+    (9) expression -> . expression - expression
+    (10) expression -> . expression * expression
+    (11) expression -> . expression / expression
+    (12) expression -> . expression > expression
+    (13) expression -> . expression < expression
+    (14) expression -> . expression GREATEREQUAL expression
+    (15) expression -> . expression LOWEREQUAL expression
+    (16) expression -> . expression NOTEQUAL expression
+    (17) expression -> . expression EQUAL expression
+    (18) expression -> . ( expression )
+    (19) term -> . INTNUM
+    (20) term -> . FLOATNUM
+    (21) term -> . STRING
+
+    ID              shift and go to state 2
+    (               shift and go to state 4
+    INTNUM          shift and go to state 5
+    FLOATNUM        shift and go to state 6
+    STRING          shift and go to state 7
+
+    expression                     shift and go to state 32
+    term                           shift and go to state 3
+
+state 17
+
+    (17) expression -> expression EQUAL . expression
+    (1) expression -> . ID = expression
+    (2) expression -> . ID ADDASSIGN expression
+    (3) expression -> . ID SUBASSIGN expression
+    (4) expression -> . ID MULASSIGN expression
+    (5) expression -> . ID DIVASSIGN expression
+    (6) expression -> . term
+    (7) expression -> . ID
+    (8) expression -> . expression + expression
+    (9) expression -> . expression - expression
+    (10) expression -> . expression * expression
+    (11) expression -> . expression / expression
+    (12) expression -> . expression > expression
+    (13) expression -> . expression < expression
+    (14) expression -> . expression GREATEREQUAL expression
+    (15) expression -> . expression LOWEREQUAL expression
+    (16) expression -> . expression NOTEQUAL expression
+    (17) expression -> . expression EQUAL expression
+    (18) expression -> . ( expression )
+    (19) term -> . INTNUM
+    (20) term -> . FLOATNUM
+    (21) term -> . STRING
+
+    ID              shift and go to state 2
+    (               shift and go to state 4
+    INTNUM          shift and go to state 5
+    FLOATNUM        shift and go to state 6
+    STRING          shift and go to state 7
+
+    expression                     shift and go to state 33
+    term                           shift and go to state 3
+
+state 18
+
+    (1) expression -> ID = . expression
+    (1) expression -> . ID = expression
+    (2) expression -> . ID ADDASSIGN expression
+    (3) expression -> . ID SUBASSIGN expression
+    (4) expression -> . ID MULASSIGN expression
+    (5) expression -> . ID DIVASSIGN expression
+    (6) expression -> . term
+    (7) expression -> . ID
+    (8) expression -> . expression + expression
+    (9) expression -> . expression - expression
+    (10) expression -> . expression * expression
+    (11) expression -> . expression / expression
+    (12) expression -> . expression > expression
+    (13) expression -> . expression < expression
+    (14) expression -> . expression GREATEREQUAL expression
+    (15) expression -> . expression LOWEREQUAL expression
+    (16) expression -> . expression NOTEQUAL expression
+    (17) expression -> . expression EQUAL expression
+    (18) expression -> . ( expression )
+    (19) term -> . INTNUM
+    (20) term -> . FLOATNUM
+    (21) term -> . STRING
+
+    ID              shift and go to state 2
+    (               shift and go to state 4
+    INTNUM          shift and go to state 5
+    FLOATNUM        shift and go to state 6
+    STRING          shift and go to state 7
+
+    expression                     shift and go to state 34
+    term                           shift and go to state 3
+
+state 19
+
+    (2) expression -> ID ADDASSIGN . expression
+    (1) expression -> . ID = expression
+    (2) expression -> . ID ADDASSIGN expression
+    (3) expression -> . ID SUBASSIGN expression
+    (4) expression -> . ID MULASSIGN expression
+    (5) expression -> . ID DIVASSIGN expression
+    (6) expression -> . term
+    (7) expression -> . ID
+    (8) expression -> . expression + expression
+    (9) expression -> . expression - expression
+    (10) expression -> . expression * expression
+    (11) expression -> . expression / expression
+    (12) expression -> . expression > expression
+    (13) expression -> . expression < expression
+    (14) expression -> . expression GREATEREQUAL expression
+    (15) expression -> . expression LOWEREQUAL expression
+    (16) expression -> . expression NOTEQUAL expression
+    (17) expression -> . expression EQUAL expression
+    (18) expression -> . ( expression )
+    (19) term -> . INTNUM
+    (20) term -> . FLOATNUM
+    (21) term -> . STRING
+
+    ID              shift and go to state 2
+    (               shift and go to state 4
+    INTNUM          shift and go to state 5
+    FLOATNUM        shift and go to state 6
+    STRING          shift and go to state 7
+
+    expression                     shift and go to state 35
+    term                           shift and go to state 3
+
+state 20
+
+    (3) expression -> ID SUBASSIGN . expression
+    (1) expression -> . ID = expression
+    (2) expression -> . ID ADDASSIGN expression
+    (3) expression -> . ID SUBASSIGN expression
+    (4) expression -> . ID MULASSIGN expression
+    (5) expression -> . ID DIVASSIGN expression
+    (6) expression -> . term
+    (7) expression -> . ID
+    (8) expression -> . expression + expression
+    (9) expression -> . expression - expression
+    (10) expression -> . expression * expression
+    (11) expression -> . expression / expression
+    (12) expression -> . expression > expression
+    (13) expression -> . expression < expression
+    (14) expression -> . expression GREATEREQUAL expression
+    (15) expression -> . expression LOWEREQUAL expression
+    (16) expression -> . expression NOTEQUAL expression
+    (17) expression -> . expression EQUAL expression
+    (18) expression -> . ( expression )
+    (19) term -> . INTNUM
+    (20) term -> . FLOATNUM
+    (21) term -> . STRING
+
+    ID              shift and go to state 2
+    (               shift and go to state 4
+    INTNUM          shift and go to state 5
+    FLOATNUM        shift and go to state 6
+    STRING          shift and go to state 7
+
+    expression                     shift and go to state 36
+    term                           shift and go to state 3
+
+state 21
+
+    (4) expression -> ID MULASSIGN . expression
+    (1) expression -> . ID = expression
+    (2) expression -> . ID ADDASSIGN expression
+    (3) expression -> . ID SUBASSIGN expression
+    (4) expression -> . ID MULASSIGN expression
+    (5) expression -> . ID DIVASSIGN expression
+    (6) expression -> . term
+    (7) expression -> . ID
+    (8) expression -> . expression + expression
+    (9) expression -> . expression - expression
+    (10) expression -> . expression * expression
+    (11) expression -> . expression / expression
+    (12) expression -> . expression > expression
+    (13) expression -> . expression < expression
+    (14) expression -> . expression GREATEREQUAL expression
+    (15) expression -> . expression LOWEREQUAL expression
+    (16) expression -> . expression NOTEQUAL expression
+    (17) expression -> . expression EQUAL expression
+    (18) expression -> . ( expression )
+    (19) term -> . INTNUM
+    (20) term -> . FLOATNUM
+    (21) term -> . STRING
+
+    ID              shift and go to state 2
+    (               shift and go to state 4
+    INTNUM          shift and go to state 5
+    FLOATNUM        shift and go to state 6
+    STRING          shift and go to state 7
+
+    expression                     shift and go to state 37
+    term                           shift and go to state 3
+
+state 22
+
+    (5) expression -> ID DIVASSIGN . expression
+    (1) expression -> . ID = expression
+    (2) expression -> . ID ADDASSIGN expression
+    (3) expression -> . ID SUBASSIGN expression
+    (4) expression -> . ID MULASSIGN expression
+    (5) expression -> . ID DIVASSIGN expression
+    (6) expression -> . term
+    (7) expression -> . ID
+    (8) expression -> . expression + expression
+    (9) expression -> . expression - expression
+    (10) expression -> . expression * expression
+    (11) expression -> . expression / expression
+    (12) expression -> . expression > expression
+    (13) expression -> . expression < expression
+    (14) expression -> . expression GREATEREQUAL expression
+    (15) expression -> . expression LOWEREQUAL expression
+    (16) expression -> . expression NOTEQUAL expression
+    (17) expression -> . expression EQUAL expression
+    (18) expression -> . ( expression )
+    (19) term -> . INTNUM
+    (20) term -> . FLOATNUM
+    (21) term -> . STRING
+
+    ID              shift and go to state 2
+    (               shift and go to state 4
+    INTNUM          shift and go to state 5
+    FLOATNUM        shift and go to state 6
+    STRING          shift and go to state 7
+
+    expression                     shift and go to state 38
+    term                           shift and go to state 3
+
+state 23
+
+    (18) expression -> ( expression . )
+    (8) expression -> expression . + expression
+    (9) expression -> expression . - expression
+    (10) expression -> expression . * expression
+    (11) expression -> expression . / expression
+    (12) expression -> expression . > expression
+    (13) expression -> expression . < expression
+    (14) expression -> expression . GREATEREQUAL expression
+    (15) expression -> expression . LOWEREQUAL expression
+    (16) expression -> expression . NOTEQUAL expression
+    (17) expression -> expression . EQUAL expression
+
+    )               shift and go to state 39
+    +               shift and go to state 8
+    -               shift and go to state 9
+    *               shift and go to state 10
+    /               shift and go to state 11
+    >               shift and go to state 12
+    <               shift and go to state 13
+    GREATEREQUAL    shift and go to state 14
+    LOWEREQUAL      shift and go to state 15
+    NOTEQUAL        shift and go to state 16
+    EQUAL           shift and go to state 17
+
+
+state 24
+
+    (8) expression -> expression + expression .
+    (8) expression -> expression . + expression
+    (9) expression -> expression . - expression
+    (10) expression -> expression . * expression
+    (11) expression -> expression . / expression
+    (12) expression -> expression . > expression
+    (13) expression -> expression . < expression
+    (14) expression -> expression . GREATEREQUAL expression
+    (15) expression -> expression . LOWEREQUAL expression
+    (16) expression -> expression . NOTEQUAL expression
+    (17) expression -> expression . EQUAL expression
+
+    +               reduce using rule 8 (expression -> expression + expression .)
+    -               reduce using rule 8 (expression -> expression + expression .)
+    >               reduce using rule 8 (expression -> expression + expression .)
+    <               reduce using rule 8 (expression -> expression + expression .)
+    GREATEREQUAL    reduce using rule 8 (expression -> expression + expression .)
+    LOWEREQUAL      reduce using rule 8 (expression -> expression + expression .)
+    NOTEQUAL        reduce using rule 8 (expression -> expression + expression .)
+    EQUAL           reduce using rule 8 (expression -> expression + expression .)
+    $end            reduce using rule 8 (expression -> expression + expression .)
+    )               reduce using rule 8 (expression -> expression + expression .)
+    *               shift and go to state 10
+    /               shift and go to state 11
+
+  ! *               [ reduce using rule 8 (expression -> expression + expression .) ]
+  ! /               [ reduce using rule 8 (expression -> expression + expression .) ]
+  ! +               [ shift and go to state 8 ]
+  ! -               [ shift and go to state 9 ]
+  ! >               [ shift and go to state 12 ]
+  ! <               [ shift and go to state 13 ]
+  ! GREATEREQUAL    [ shift and go to state 14 ]
+  ! LOWEREQUAL      [ shift and go to state 15 ]
+  ! NOTEQUAL        [ shift and go to state 16 ]
+  ! EQUAL           [ shift and go to state 17 ]
+
+
+state 25
+
+    (9) expression -> expression - expression .
+    (8) expression -> expression . + expression
+    (9) expression -> expression . - expression
+    (10) expression -> expression . * expression
+    (11) expression -> expression . / expression
+    (12) expression -> expression . > expression
+    (13) expression -> expression . < expression
+    (14) expression -> expression . GREATEREQUAL expression
+    (15) expression -> expression . LOWEREQUAL expression
+    (16) expression -> expression . NOTEQUAL expression
+    (17) expression -> expression . EQUAL expression
+
+    +               reduce using rule 9 (expression -> expression - expression .)
+    -               reduce using rule 9 (expression -> expression - expression .)
+    >               reduce using rule 9 (expression -> expression - expression .)
+    <               reduce using rule 9 (expression -> expression - expression .)
+    GREATEREQUAL    reduce using rule 9 (expression -> expression - expression .)
+    LOWEREQUAL      reduce using rule 9 (expression -> expression - expression .)
+    NOTEQUAL        reduce using rule 9 (expression -> expression - expression .)
+    EQUAL           reduce using rule 9 (expression -> expression - expression .)
+    $end            reduce using rule 9 (expression -> expression - expression .)
+    )               reduce using rule 9 (expression -> expression - expression .)
+    *               shift and go to state 10
+    /               shift and go to state 11
+
+  ! *               [ reduce using rule 9 (expression -> expression - expression .) ]
+  ! /               [ reduce using rule 9 (expression -> expression - expression .) ]
+  ! +               [ shift and go to state 8 ]
+  ! -               [ shift and go to state 9 ]
+  ! >               [ shift and go to state 12 ]
+  ! <               [ shift and go to state 13 ]
+  ! GREATEREQUAL    [ shift and go to state 14 ]
+  ! LOWEREQUAL      [ shift and go to state 15 ]
+  ! NOTEQUAL        [ shift and go to state 16 ]
+  ! EQUAL           [ shift and go to state 17 ]
+
+
+state 26
+
+    (10) expression -> expression * expression .
+    (8) expression -> expression . + expression
+    (9) expression -> expression . - expression
+    (10) expression -> expression . * expression
+    (11) expression -> expression . / expression
+    (12) expression -> expression . > expression
+    (13) expression -> expression . < expression
+    (14) expression -> expression . GREATEREQUAL expression
+    (15) expression -> expression . LOWEREQUAL expression
+    (16) expression -> expression . NOTEQUAL expression
+    (17) expression -> expression . EQUAL expression
+
+    +               reduce using rule 10 (expression -> expression * expression .)
+    -               reduce using rule 10 (expression -> expression * expression .)
+    *               reduce using rule 10 (expression -> expression * expression .)
+    /               reduce using rule 10 (expression -> expression * expression .)
+    >               reduce using rule 10 (expression -> expression * expression .)
+    <               reduce using rule 10 (expression -> expression * expression .)
+    GREATEREQUAL    reduce using rule 10 (expression -> expression * expression .)
+    LOWEREQUAL      reduce using rule 10 (expression -> expression * expression .)
+    NOTEQUAL        reduce using rule 10 (expression -> expression * expression .)
+    EQUAL           reduce using rule 10 (expression -> expression * expression .)
+    $end            reduce using rule 10 (expression -> expression * expression .)
+    )               reduce using rule 10 (expression -> expression * expression .)
+
+  ! +               [ shift and go to state 8 ]
+  ! -               [ shift and go to state 9 ]
+  ! *               [ shift and go to state 10 ]
+  ! /               [ shift and go to state 11 ]
+  ! >               [ shift and go to state 12 ]
+  ! <               [ shift and go to state 13 ]
+  ! GREATEREQUAL    [ shift and go to state 14 ]
+  ! LOWEREQUAL      [ shift and go to state 15 ]
+  ! NOTEQUAL        [ shift and go to state 16 ]
+  ! EQUAL           [ shift and go to state 17 ]
+
+
+state 27
+
+    (11) expression -> expression / expression .
+    (8) expression -> expression . + expression
+    (9) expression -> expression . - expression
+    (10) expression -> expression . * expression
+    (11) expression -> expression . / expression
+    (12) expression -> expression . > expression
+    (13) expression -> expression . < expression
+    (14) expression -> expression . GREATEREQUAL expression
+    (15) expression -> expression . LOWEREQUAL expression
+    (16) expression -> expression . NOTEQUAL expression
+    (17) expression -> expression . EQUAL expression
+
+    +               reduce using rule 11 (expression -> expression / expression .)
+    -               reduce using rule 11 (expression -> expression / expression .)
+    *               reduce using rule 11 (expression -> expression / expression .)
+    /               reduce using rule 11 (expression -> expression / expression .)
+    >               reduce using rule 11 (expression -> expression / expression .)
+    <               reduce using rule 11 (expression -> expression / expression .)
+    GREATEREQUAL    reduce using rule 11 (expression -> expression / expression .)
+    LOWEREQUAL      reduce using rule 11 (expression -> expression / expression .)
+    NOTEQUAL        reduce using rule 11 (expression -> expression / expression .)
+    EQUAL           reduce using rule 11 (expression -> expression / expression .)
+    $end            reduce using rule 11 (expression -> expression / expression .)
+    )               reduce using rule 11 (expression -> expression / expression .)
+
+  ! +               [ shift and go to state 8 ]
+  ! -               [ shift and go to state 9 ]
+  ! *               [ shift and go to state 10 ]
+  ! /               [ shift and go to state 11 ]
+  ! >               [ shift and go to state 12 ]
+  ! <               [ shift and go to state 13 ]
+  ! GREATEREQUAL    [ shift and go to state 14 ]
+  ! LOWEREQUAL      [ shift and go to state 15 ]
+  ! NOTEQUAL        [ shift and go to state 16 ]
+  ! EQUAL           [ shift and go to state 17 ]
+
+
+state 28
+
+    (12) expression -> expression > expression .
+    (8) expression -> expression . + expression
+    (9) expression -> expression . - expression
+    (10) expression -> expression . * expression
+    (11) expression -> expression . / expression
+    (12) expression -> expression . > expression
+    (13) expression -> expression . < expression
+    (14) expression -> expression . GREATEREQUAL expression
+    (15) expression -> expression . LOWEREQUAL expression
+    (16) expression -> expression . NOTEQUAL expression
+    (17) expression -> expression . EQUAL expression
+
+    >               reduce using rule 12 (expression -> expression > expression .)
+    <               reduce using rule 12 (expression -> expression > expression .)
+    GREATEREQUAL    reduce using rule 12 (expression -> expression > expression .)
+    LOWEREQUAL      reduce using rule 12 (expression -> expression > expression .)
+    NOTEQUAL        reduce using rule 12 (expression -> expression > expression .)
+    EQUAL           reduce using rule 12 (expression -> expression > expression .)
+    $end            reduce using rule 12 (expression -> expression > expression .)
+    )               reduce using rule 12 (expression -> expression > expression .)
+    +               shift and go to state 8
+    -               shift and go to state 9
+    *               shift and go to state 10
+    /               shift and go to state 11
+
+  ! +               [ reduce using rule 12 (expression -> expression > expression .) ]
+  ! -               [ reduce using rule 12 (expression -> expression > expression .) ]
+  ! *               [ reduce using rule 12 (expression -> expression > expression .) ]
+  ! /               [ reduce using rule 12 (expression -> expression > expression .) ]
+  ! >               [ shift and go to state 12 ]
+  ! <               [ shift and go to state 13 ]
+  ! GREATEREQUAL    [ shift and go to state 14 ]
+  ! LOWEREQUAL      [ shift and go to state 15 ]
+  ! NOTEQUAL        [ shift and go to state 16 ]
+  ! EQUAL           [ shift and go to state 17 ]
+
+
+state 29
+
+    (13) expression -> expression < expression .
+    (8) expression -> expression . + expression
+    (9) expression -> expression . - expression
+    (10) expression -> expression . * expression
+    (11) expression -> expression . / expression
+    (12) expression -> expression . > expression
+    (13) expression -> expression . < expression
+    (14) expression -> expression . GREATEREQUAL expression
+    (15) expression -> expression . LOWEREQUAL expression
+    (16) expression -> expression . NOTEQUAL expression
+    (17) expression -> expression . EQUAL expression
+
+    >               reduce using rule 13 (expression -> expression < expression .)
+    <               reduce using rule 13 (expression -> expression < expression .)
+    GREATEREQUAL    reduce using rule 13 (expression -> expression < expression .)
+    LOWEREQUAL      reduce using rule 13 (expression -> expression < expression .)
+    NOTEQUAL        reduce using rule 13 (expression -> expression < expression .)
+    EQUAL           reduce using rule 13 (expression -> expression < expression .)
+    $end            reduce using rule 13 (expression -> expression < expression .)
+    )               reduce using rule 13 (expression -> expression < expression .)
+    +               shift and go to state 8
+    -               shift and go to state 9
+    *               shift and go to state 10
+    /               shift and go to state 11
+
+  ! +               [ reduce using rule 13 (expression -> expression < expression .) ]
+  ! -               [ reduce using rule 13 (expression -> expression < expression .) ]
+  ! *               [ reduce using rule 13 (expression -> expression < expression .) ]
+  ! /               [ reduce using rule 13 (expression -> expression < expression .) ]
+  ! >               [ shift and go to state 12 ]
+  ! <               [ shift and go to state 13 ]
+  ! GREATEREQUAL    [ shift and go to state 14 ]
+  ! LOWEREQUAL      [ shift and go to state 15 ]
+  ! NOTEQUAL        [ shift and go to state 16 ]
+  ! EQUAL           [ shift and go to state 17 ]
+
+
+state 30
+
+    (14) expression -> expression GREATEREQUAL expression .
+    (8) expression -> expression . + expression
+    (9) expression -> expression . - expression
+    (10) expression -> expression . * expression
+    (11) expression -> expression . / expression
+    (12) expression -> expression . > expression
+    (13) expression -> expression . < expression
+    (14) expression -> expression . GREATEREQUAL expression
+    (15) expression -> expression . LOWEREQUAL expression
+    (16) expression -> expression . NOTEQUAL expression
+    (17) expression -> expression . EQUAL expression
+
+    >               reduce using rule 14 (expression -> expression GREATEREQUAL expression .)
+    <               reduce using rule 14 (expression -> expression GREATEREQUAL expression .)
+    GREATEREQUAL    reduce using rule 14 (expression -> expression GREATEREQUAL expression .)
+    LOWEREQUAL      reduce using rule 14 (expression -> expression GREATEREQUAL expression .)
+    NOTEQUAL        reduce using rule 14 (expression -> expression GREATEREQUAL expression .)
+    EQUAL           reduce using rule 14 (expression -> expression GREATEREQUAL expression .)
+    $end            reduce using rule 14 (expression -> expression GREATEREQUAL expression .)
+    )               reduce using rule 14 (expression -> expression GREATEREQUAL expression .)
+    +               shift and go to state 8
+    -               shift and go to state 9
+    *               shift and go to state 10
+    /               shift and go to state 11
+
+  ! +               [ reduce using rule 14 (expression -> expression GREATEREQUAL expression .) ]
+  ! -               [ reduce using rule 14 (expression -> expression GREATEREQUAL expression .) ]
+  ! *               [ reduce using rule 14 (expression -> expression GREATEREQUAL expression .) ]
+  ! /               [ reduce using rule 14 (expression -> expression GREATEREQUAL expression .) ]
+  ! >               [ shift and go to state 12 ]
+  ! <               [ shift and go to state 13 ]
+  ! GREATEREQUAL    [ shift and go to state 14 ]
+  ! LOWEREQUAL      [ shift and go to state 15 ]
+  ! NOTEQUAL        [ shift and go to state 16 ]
+  ! EQUAL           [ shift and go to state 17 ]
+
+
+state 31
+
+    (15) expression -> expression LOWEREQUAL expression .
+    (8) expression -> expression . + expression
+    (9) expression -> expression . - expression
+    (10) expression -> expression . * expression
+    (11) expression -> expression . / expression
+    (12) expression -> expression . > expression
+    (13) expression -> expression . < expression
+    (14) expression -> expression . GREATEREQUAL expression
+    (15) expression -> expression . LOWEREQUAL expression
+    (16) expression -> expression . NOTEQUAL expression
+    (17) expression -> expression . EQUAL expression
+
+    >               reduce using rule 15 (expression -> expression LOWEREQUAL expression .)
+    <               reduce using rule 15 (expression -> expression LOWEREQUAL expression .)
+    GREATEREQUAL    reduce using rule 15 (expression -> expression LOWEREQUAL expression .)
+    LOWEREQUAL      reduce using rule 15 (expression -> expression LOWEREQUAL expression .)
+    NOTEQUAL        reduce using rule 15 (expression -> expression LOWEREQUAL expression .)
+    EQUAL           reduce using rule 15 (expression -> expression LOWEREQUAL expression .)
+    $end            reduce using rule 15 (expression -> expression LOWEREQUAL expression .)
+    )               reduce using rule 15 (expression -> expression LOWEREQUAL expression .)
+    +               shift and go to state 8
+    -               shift and go to state 9
+    *               shift and go to state 10
+    /               shift and go to state 11
+
+  ! +               [ reduce using rule 15 (expression -> expression LOWEREQUAL expression .) ]
+  ! -               [ reduce using rule 15 (expression -> expression LOWEREQUAL expression .) ]
+  ! *               [ reduce using rule 15 (expression -> expression LOWEREQUAL expression .) ]
+  ! /               [ reduce using rule 15 (expression -> expression LOWEREQUAL expression .) ]
+  ! >               [ shift and go to state 12 ]
+  ! <               [ shift and go to state 13 ]
+  ! GREATEREQUAL    [ shift and go to state 14 ]
+  ! LOWEREQUAL      [ shift and go to state 15 ]
+  ! NOTEQUAL        [ shift and go to state 16 ]
+  ! EQUAL           [ shift and go to state 17 ]
+
+
+state 32
+
+    (16) expression -> expression NOTEQUAL expression .
+    (8) expression -> expression . + expression
+    (9) expression -> expression . - expression
+    (10) expression -> expression . * expression
+    (11) expression -> expression . / expression
+    (12) expression -> expression . > expression
+    (13) expression -> expression . < expression
+    (14) expression -> expression . GREATEREQUAL expression
+    (15) expression -> expression . LOWEREQUAL expression
+    (16) expression -> expression . NOTEQUAL expression
+    (17) expression -> expression . EQUAL expression
+
+    >               reduce using rule 16 (expression -> expression NOTEQUAL expression .)
+    <               reduce using rule 16 (expression -> expression NOTEQUAL expression .)
+    GREATEREQUAL    reduce using rule 16 (expression -> expression NOTEQUAL expression .)
+    LOWEREQUAL      reduce using rule 16 (expression -> expression NOTEQUAL expression .)
+    NOTEQUAL        reduce using rule 16 (expression -> expression NOTEQUAL expression .)
+    EQUAL           reduce using rule 16 (expression -> expression NOTEQUAL expression .)
+    $end            reduce using rule 16 (expression -> expression NOTEQUAL expression .)
+    )               reduce using rule 16 (expression -> expression NOTEQUAL expression .)
+    +               shift and go to state 8
+    -               shift and go to state 9
+    *               shift and go to state 10
+    /               shift and go to state 11
+
+  ! +               [ reduce using rule 16 (expression -> expression NOTEQUAL expression .) ]
+  ! -               [ reduce using rule 16 (expression -> expression NOTEQUAL expression .) ]
+  ! *               [ reduce using rule 16 (expression -> expression NOTEQUAL expression .) ]
+  ! /               [ reduce using rule 16 (expression -> expression NOTEQUAL expression .) ]
+  ! >               [ shift and go to state 12 ]
+  ! <               [ shift and go to state 13 ]
+  ! GREATEREQUAL    [ shift and go to state 14 ]
+  ! LOWEREQUAL      [ shift and go to state 15 ]
+  ! NOTEQUAL        [ shift and go to state 16 ]
+  ! EQUAL           [ shift and go to state 17 ]
+
+
+state 33
+
+    (17) expression -> expression EQUAL expression .
+    (8) expression -> expression . + expression
+    (9) expression -> expression . - expression
+    (10) expression -> expression . * expression
+    (11) expression -> expression . / expression
+    (12) expression -> expression . > expression
+    (13) expression -> expression . < expression
+    (14) expression -> expression . GREATEREQUAL expression
+    (15) expression -> expression . LOWEREQUAL expression
+    (16) expression -> expression . NOTEQUAL expression
+    (17) expression -> expression . EQUAL expression
+
+    >               reduce using rule 17 (expression -> expression EQUAL expression .)
+    <               reduce using rule 17 (expression -> expression EQUAL expression .)
+    GREATEREQUAL    reduce using rule 17 (expression -> expression EQUAL expression .)
+    LOWEREQUAL      reduce using rule 17 (expression -> expression EQUAL expression .)
+    NOTEQUAL        reduce using rule 17 (expression -> expression EQUAL expression .)
+    EQUAL           reduce using rule 17 (expression -> expression EQUAL expression .)
+    $end            reduce using rule 17 (expression -> expression EQUAL expression .)
+    )               reduce using rule 17 (expression -> expression EQUAL expression .)
+    +               shift and go to state 8
+    -               shift and go to state 9
+    *               shift and go to state 10
+    /               shift and go to state 11
+
+  ! +               [ reduce using rule 17 (expression -> expression EQUAL expression .) ]
+  ! -               [ reduce using rule 17 (expression -> expression EQUAL expression .) ]
+  ! *               [ reduce using rule 17 (expression -> expression EQUAL expression .) ]
+  ! /               [ reduce using rule 17 (expression -> expression EQUAL expression .) ]
+  ! >               [ shift and go to state 12 ]
+  ! <               [ shift and go to state 13 ]
+  ! GREATEREQUAL    [ shift and go to state 14 ]
+  ! LOWEREQUAL      [ shift and go to state 15 ]
+  ! NOTEQUAL        [ shift and go to state 16 ]
+  ! EQUAL           [ shift and go to state 17 ]
+
+
+state 34
+
+    (1) expression -> ID = expression .
+    (8) expression -> expression . + expression
+    (9) expression -> expression . - expression
+    (10) expression -> expression . * expression
+    (11) expression -> expression . / expression
+    (12) expression -> expression . > expression
+    (13) expression -> expression . < expression
+    (14) expression -> expression . GREATEREQUAL expression
+    (15) expression -> expression . LOWEREQUAL expression
+    (16) expression -> expression . NOTEQUAL expression
+    (17) expression -> expression . EQUAL expression
+
+    $end            reduce using rule 1 (expression -> ID = expression .)
+    )               reduce using rule 1 (expression -> ID = expression .)
+    +               shift and go to state 8
+    -               shift and go to state 9
+    *               shift and go to state 10
+    /               shift and go to state 11
+    >               shift and go to state 12
+    <               shift and go to state 13
+    GREATEREQUAL    shift and go to state 14
+    LOWEREQUAL      shift and go to state 15
+    NOTEQUAL        shift and go to state 16
+    EQUAL           shift and go to state 17
+
+  ! +               [ reduce using rule 1 (expression -> ID = expression .) ]
+  ! -               [ reduce using rule 1 (expression -> ID = expression .) ]
+  ! *               [ reduce using rule 1 (expression -> ID = expression .) ]
+  ! /               [ reduce using rule 1 (expression -> ID = expression .) ]
+  ! >               [ reduce using rule 1 (expression -> ID = expression .) ]
+  ! <               [ reduce using rule 1 (expression -> ID = expression .) ]
+  ! GREATEREQUAL    [ reduce using rule 1 (expression -> ID = expression .) ]
+  ! LOWEREQUAL      [ reduce using rule 1 (expression -> ID = expression .) ]
+  ! NOTEQUAL        [ reduce using rule 1 (expression -> ID = expression .) ]
+  ! EQUAL           [ reduce using rule 1 (expression -> ID = expression .) ]
+
+
+state 35
+
+    (2) expression -> ID ADDASSIGN expression .
+    (8) expression -> expression . + expression
+    (9) expression -> expression . - expression
+    (10) expression -> expression . * expression
+    (11) expression -> expression . / expression
+    (12) expression -> expression . > expression
+    (13) expression -> expression . < expression
+    (14) expression -> expression . GREATEREQUAL expression
+    (15) expression -> expression . LOWEREQUAL expression
+    (16) expression -> expression . NOTEQUAL expression
+    (17) expression -> expression . EQUAL expression
+
+  ! shift/reduce conflict for + resolved as shift
+  ! shift/reduce conflict for - resolved as shift
+  ! shift/reduce conflict for * resolved as shift
+  ! shift/reduce conflict for / resolved as shift
+  ! shift/reduce conflict for > resolved as shift
+  ! shift/reduce conflict for < resolved as shift
+  ! shift/reduce conflict for GREATEREQUAL resolved as shift
+  ! shift/reduce conflict for LOWEREQUAL resolved as shift
+  ! shift/reduce conflict for NOTEQUAL resolved as shift
+  ! shift/reduce conflict for EQUAL resolved as shift
+    $end            reduce using rule 2 (expression -> ID ADDASSIGN expression .)
+    )               reduce using rule 2 (expression -> ID ADDASSIGN expression .)
+    +               shift and go to state 8
+    -               shift and go to state 9
+    *               shift and go to state 10
+    /               shift and go to state 11
+    >               shift and go to state 12
+    <               shift and go to state 13
+    GREATEREQUAL    shift and go to state 14
+    LOWEREQUAL      shift and go to state 15
+    NOTEQUAL        shift and go to state 16
+    EQUAL           shift and go to state 17
+
+  ! +               [ reduce using rule 2 (expression -> ID ADDASSIGN expression .) ]
+  ! -               [ reduce using rule 2 (expression -> ID ADDASSIGN expression .) ]
+  ! *               [ reduce using rule 2 (expression -> ID ADDASSIGN expression .) ]
+  ! /               [ reduce using rule 2 (expression -> ID ADDASSIGN expression .) ]
+  ! >               [ reduce using rule 2 (expression -> ID ADDASSIGN expression .) ]
+  ! <               [ reduce using rule 2 (expression -> ID ADDASSIGN expression .) ]
+  ! GREATEREQUAL    [ reduce using rule 2 (expression -> ID ADDASSIGN expression .) ]
+  ! LOWEREQUAL      [ reduce using rule 2 (expression -> ID ADDASSIGN expression .) ]
+  ! NOTEQUAL        [ reduce using rule 2 (expression -> ID ADDASSIGN expression .) ]
+  ! EQUAL           [ reduce using rule 2 (expression -> ID ADDASSIGN expression .) ]
+
+
+state 36
+
+    (3) expression -> ID SUBASSIGN expression .
+    (8) expression -> expression . + expression
+    (9) expression -> expression . - expression
+    (10) expression -> expression . * expression
+    (11) expression -> expression . / expression
+    (12) expression -> expression . > expression
+    (13) expression -> expression . < expression
+    (14) expression -> expression . GREATEREQUAL expression
+    (15) expression -> expression . LOWEREQUAL expression
+    (16) expression -> expression . NOTEQUAL expression
+    (17) expression -> expression . EQUAL expression
+
+  ! shift/reduce conflict for + resolved as shift
+  ! shift/reduce conflict for - resolved as shift
+  ! shift/reduce conflict for * resolved as shift
+  ! shift/reduce conflict for / resolved as shift
+  ! shift/reduce conflict for > resolved as shift
+  ! shift/reduce conflict for < resolved as shift
+  ! shift/reduce conflict for GREATEREQUAL resolved as shift
+  ! shift/reduce conflict for LOWEREQUAL resolved as shift
+  ! shift/reduce conflict for NOTEQUAL resolved as shift
+  ! shift/reduce conflict for EQUAL resolved as shift
+    $end            reduce using rule 3 (expression -> ID SUBASSIGN expression .)
+    )               reduce using rule 3 (expression -> ID SUBASSIGN expression .)
+    +               shift and go to state 8
+    -               shift and go to state 9
+    *               shift and go to state 10
+    /               shift and go to state 11
+    >               shift and go to state 12
+    <               shift and go to state 13
+    GREATEREQUAL    shift and go to state 14
+    LOWEREQUAL      shift and go to state 15
+    NOTEQUAL        shift and go to state 16
+    EQUAL           shift and go to state 17
+
+  ! +               [ reduce using rule 3 (expression -> ID SUBASSIGN expression .) ]
+  ! -               [ reduce using rule 3 (expression -> ID SUBASSIGN expression .) ]
+  ! *               [ reduce using rule 3 (expression -> ID SUBASSIGN expression .) ]
+  ! /               [ reduce using rule 3 (expression -> ID SUBASSIGN expression .) ]
+  ! >               [ reduce using rule 3 (expression -> ID SUBASSIGN expression .) ]
+  ! <               [ reduce using rule 3 (expression -> ID SUBASSIGN expression .) ]
+  ! GREATEREQUAL    [ reduce using rule 3 (expression -> ID SUBASSIGN expression .) ]
+  ! LOWEREQUAL      [ reduce using rule 3 (expression -> ID SUBASSIGN expression .) ]
+  ! NOTEQUAL        [ reduce using rule 3 (expression -> ID SUBASSIGN expression .) ]
+  ! EQUAL           [ reduce using rule 3 (expression -> ID SUBASSIGN expression .) ]
+
+
+state 37
+
+    (4) expression -> ID MULASSIGN expression .
+    (8) expression -> expression . + expression
+    (9) expression -> expression . - expression
+    (10) expression -> expression . * expression
+    (11) expression -> expression . / expression
+    (12) expression -> expression . > expression
+    (13) expression -> expression . < expression
+    (14) expression -> expression . GREATEREQUAL expression
+    (15) expression -> expression . LOWEREQUAL expression
+    (16) expression -> expression . NOTEQUAL expression
+    (17) expression -> expression . EQUAL expression
+
+  ! shift/reduce conflict for + resolved as shift
+  ! shift/reduce conflict for - resolved as shift
+  ! shift/reduce conflict for * resolved as shift
+  ! shift/reduce conflict for / resolved as shift
+  ! shift/reduce conflict for > resolved as shift
+  ! shift/reduce conflict for < resolved as shift
+  ! shift/reduce conflict for GREATEREQUAL resolved as shift
+  ! shift/reduce conflict for LOWEREQUAL resolved as shift
+  ! shift/reduce conflict for NOTEQUAL resolved as shift
+  ! shift/reduce conflict for EQUAL resolved as shift
+    $end            reduce using rule 4 (expression -> ID MULASSIGN expression .)
+    )               reduce using rule 4 (expression -> ID MULASSIGN expression .)
+    +               shift and go to state 8
+    -               shift and go to state 9
+    *               shift and go to state 10
+    /               shift and go to state 11
+    >               shift and go to state 12
+    <               shift and go to state 13
+    GREATEREQUAL    shift and go to state 14
+    LOWEREQUAL      shift and go to state 15
+    NOTEQUAL        shift and go to state 16
+    EQUAL           shift and go to state 17
+
+  ! +               [ reduce using rule 4 (expression -> ID MULASSIGN expression .) ]
+  ! -               [ reduce using rule 4 (expression -> ID MULASSIGN expression .) ]
+  ! *               [ reduce using rule 4 (expression -> ID MULASSIGN expression .) ]
+  ! /               [ reduce using rule 4 (expression -> ID MULASSIGN expression .) ]
+  ! >               [ reduce using rule 4 (expression -> ID MULASSIGN expression .) ]
+  ! <               [ reduce using rule 4 (expression -> ID MULASSIGN expression .) ]
+  ! GREATEREQUAL    [ reduce using rule 4 (expression -> ID MULASSIGN expression .) ]
+  ! LOWEREQUAL      [ reduce using rule 4 (expression -> ID MULASSIGN expression .) ]
+  ! NOTEQUAL        [ reduce using rule 4 (expression -> ID MULASSIGN expression .) ]
+  ! EQUAL           [ reduce using rule 4 (expression -> ID MULASSIGN expression .) ]
+
+
+state 38
+
+    (5) expression -> ID DIVASSIGN expression .
+    (8) expression -> expression . + expression
+    (9) expression -> expression . - expression
+    (10) expression -> expression . * expression
+    (11) expression -> expression . / expression
+    (12) expression -> expression . > expression
+    (13) expression -> expression . < expression
+    (14) expression -> expression . GREATEREQUAL expression
+    (15) expression -> expression . LOWEREQUAL expression
+    (16) expression -> expression . NOTEQUAL expression
+    (17) expression -> expression . EQUAL expression
+
+  ! shift/reduce conflict for + resolved as shift
+  ! shift/reduce conflict for - resolved as shift
+  ! shift/reduce conflict for * resolved as shift
+  ! shift/reduce conflict for / resolved as shift
+  ! shift/reduce conflict for > resolved as shift
+  ! shift/reduce conflict for < resolved as shift
+  ! shift/reduce conflict for GREATEREQUAL resolved as shift
+  ! shift/reduce conflict for LOWEREQUAL resolved as shift
+  ! shift/reduce conflict for NOTEQUAL resolved as shift
+  ! shift/reduce conflict for EQUAL resolved as shift
+    $end            reduce using rule 5 (expression -> ID DIVASSIGN expression .)
+    )               reduce using rule 5 (expression -> ID DIVASSIGN expression .)
+    +               shift and go to state 8
+    -               shift and go to state 9
+    *               shift and go to state 10
+    /               shift and go to state 11
+    >               shift and go to state 12
+    <               shift and go to state 13
+    GREATEREQUAL    shift and go to state 14
+    LOWEREQUAL      shift and go to state 15
+    NOTEQUAL        shift and go to state 16
+    EQUAL           shift and go to state 17
+
+  ! +               [ reduce using rule 5 (expression -> ID DIVASSIGN expression .) ]
+  ! -               [ reduce using rule 5 (expression -> ID DIVASSIGN expression .) ]
+  ! *               [ reduce using rule 5 (expression -> ID DIVASSIGN expression .) ]
+  ! /               [ reduce using rule 5 (expression -> ID DIVASSIGN expression .) ]
+  ! >               [ reduce using rule 5 (expression -> ID DIVASSIGN expression .) ]
+  ! <               [ reduce using rule 5 (expression -> ID DIVASSIGN expression .) ]
+  ! GREATEREQUAL    [ reduce using rule 5 (expression -> ID DIVASSIGN expression .) ]
+  ! LOWEREQUAL      [ reduce using rule 5 (expression -> ID DIVASSIGN expression .) ]
+  ! NOTEQUAL        [ reduce using rule 5 (expression -> ID DIVASSIGN expression .) ]
+  ! EQUAL           [ reduce using rule 5 (expression -> ID DIVASSIGN expression .) ]
+
+
+state 39
+
+    (18) expression -> ( expression ) .
+
+    +               reduce using rule 18 (expression -> ( expression ) .)
+    -               reduce using rule 18 (expression -> ( expression ) .)
+    *               reduce using rule 18 (expression -> ( expression ) .)
+    /               reduce using rule 18 (expression -> ( expression ) .)
+    >               reduce using rule 18 (expression -> ( expression ) .)
+    <               reduce using rule 18 (expression -> ( expression ) .)
+    GREATEREQUAL    reduce using rule 18 (expression -> ( expression ) .)
+    LOWEREQUAL      reduce using rule 18 (expression -> ( expression ) .)
+    NOTEQUAL        reduce using rule 18 (expression -> ( expression ) .)
+    EQUAL           reduce using rule 18 (expression -> ( expression ) .)
+    $end            reduce using rule 18 (expression -> ( expression ) .)
+    )               reduce using rule 18 (expression -> ( expression ) .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for + in state 35 resolved as shift
+WARNING: shift/reduce conflict for - in state 35 resolved as shift
+WARNING: shift/reduce conflict for * in state 35 resolved as shift
+WARNING: shift/reduce conflict for / in state 35 resolved as shift
+WARNING: shift/reduce conflict for > in state 35 resolved as shift
+WARNING: shift/reduce conflict for < in state 35 resolved as shift
+WARNING: shift/reduce conflict for GREATEREQUAL in state 35 resolved as shift
+WARNING: shift/reduce conflict for LOWEREQUAL in state 35 resolved as shift
+WARNING: shift/reduce conflict for NOTEQUAL in state 35 resolved as shift
+WARNING: shift/reduce conflict for EQUAL in state 35 resolved as shift
+WARNING: shift/reduce conflict for + in state 36 resolved as shift
+WARNING: shift/reduce conflict for - in state 36 resolved as shift
+WARNING: shift/reduce conflict for * in state 36 resolved as shift
+WARNING: shift/reduce conflict for / in state 36 resolved as shift
+WARNING: shift/reduce conflict for > in state 36 resolved as shift
+WARNING: shift/reduce conflict for < in state 36 resolved as shift
+WARNING: shift/reduce conflict for GREATEREQUAL in state 36 resolved as shift
+WARNING: shift/reduce conflict for LOWEREQUAL in state 36 resolved as shift
+WARNING: shift/reduce conflict for NOTEQUAL in state 36 resolved as shift
+WARNING: shift/reduce conflict for EQUAL in state 36 resolved as shift
+WARNING: shift/reduce conflict for + in state 37 resolved as shift
+WARNING: shift/reduce conflict for - in state 37 resolved as shift
+WARNING: shift/reduce conflict for * in state 37 resolved as shift
+WARNING: shift/reduce conflict for / in state 37 resolved as shift
+WARNING: shift/reduce conflict for > in state 37 resolved as shift
+WARNING: shift/reduce conflict for < in state 37 resolved as shift
+WARNING: shift/reduce conflict for GREATEREQUAL in state 37 resolved as shift
+WARNING: shift/reduce conflict for LOWEREQUAL in state 37 resolved as shift
+WARNING: shift/reduce conflict for NOTEQUAL in state 37 resolved as shift
+WARNING: shift/reduce conflict for EQUAL in state 37 resolved as shift
+WARNING: shift/reduce conflict for + in state 38 resolved as shift
+WARNING: shift/reduce conflict for - in state 38 resolved as shift
+WARNING: shift/reduce conflict for * in state 38 resolved as shift
+WARNING: shift/reduce conflict for / in state 38 resolved as shift
+WARNING: shift/reduce conflict for > in state 38 resolved as shift
+WARNING: shift/reduce conflict for < in state 38 resolved as shift
+WARNING: shift/reduce conflict for GREATEREQUAL in state 38 resolved as shift
+WARNING: shift/reduce conflict for LOWEREQUAL in state 38 resolved as shift
+WARNING: shift/reduce conflict for NOTEQUAL in state 38 resolved as shift
+WARNING: shift/reduce conflict for EQUAL in state 38 resolved as shift
