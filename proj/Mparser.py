@@ -5,18 +5,18 @@ import ply.yacc as yacc
 
 
 tokens = scanner.tokens
-'''
+
 precedence = (
    # to fill ...
-   ("nonassoc", 'IF'),
-   ("nonassoc", 'ELSE'),
-   ("right", '='),
-   ("nonassoc", '<', '>', 'GREATEREQUAL','LOWEREQUAL','NOTEQUAL','EQUAL'),
-   ("left",'+','-'),
-   ("left",'*','/'),
+   #("nonassoc", 'IF'),
+   #("nonassoc", 'ELSE'),
+   #("right", '='),
+   #("nonassoc", '<', '>', 'GREATEREQUAL','LOWEREQUAL','NOTEQUAL','EQUAL'),
+   ("left",'+','-', 'DOTADD', 'DOTSUB'),
+   ("left",'*','/', 'DOTMUL', 'DOTDIV'),
    # to fill ...
 )
-'''
+
 class Node:
      def __init__(self,type,children=None,leaf=None):
           self.type = type
@@ -25,71 +25,6 @@ class Node:
           else:
                self.children = [ ]
           self.leaf = leaf
-
-class Program(Node):
-    def __init__(self, declarations, fundefs, instructions):
-        self.declarations = declarations
-        self.fundefs = fundefs
-        self.instructions = instructions
-
-class BinOp(Node):
-  def __init__(self, left, op, right):
-    self.left = left
-    self.rigth = right
-    self.op = op
-
-class Assignment(Node):
-  def _init_(self, id, expr):
-    self.id = id
-    self.expr = expr
-
-class AssignOp(Node):
-  def __init__(self, left, op, right):
-    self.left = left
-    self.op = op
-    self.rigth = right
-
-class Group(Node):
-  def __init__(self,interior):
-    self.interior = interior
-
-class InstructionList(Node):
-    def __init__(self):
-        self.instructions = []
-    
-    def addInstruction(self, instr):
-        self.instructions.append(instr)
-
-class LabeledInstruction(Node):
-    def __init__(self, id, instr):
-        self.id = id
-        self.instr = instr
-
-class AssignmentInstruction(Node):
-    def __init__(self, id, expr):
-        self.id = id
-        self.expr = expr
-
-class ChoiceInstruction(Node):
-    def __init__(self, condition, action, alternateAction=None):
-        self.condition = condition
-        self.action = action
-        self.alternateAction = alternateAction
-
-class WhileInstruction(Node):
-    def __init__(self, condition, instruction):
-        self.condition = condition
-        self.instruction = instruction
-
-class ReturnInstruction(Node):
-    def __init__(self, expression):
-        self.expression = expression
-
-class BreakInstruction(Node):
-    pass
-
-class ContinueInstruction(Node):
-    pass
 
 class DeclarationList(Node):
   def __init__(self):
@@ -101,6 +36,33 @@ class DeclarationList(Node):
   def __str__(self):
     m_str = '\n'.join(map(str, self.declarations))
     return m_str
+
+class Expresion(Node):
+  def __init__(self, left, op, right):
+    self.left = left
+    self.op = op
+    self.right = right
+
+  def __str__(self):
+    m_str = str(self.left) + " " + str(self.op) + " " + str(self.right)
+    return m_str 
+
+class Term(Node):
+  def __init__(self, val):
+    self.val = val
+
+  def __str__(self):
+    m_str = str(self.val)
+    return m_str
+
+class GroupedExpresion(Node):
+  def __init__(self, val):
+    self.val =val
+
+  def __str__(self):
+    m_str = "(" + str(self.val) + ")" 
+    return m_str 
+
 
 class MatrixFunction(Node):
   def __init__(self, type, arg):
@@ -118,6 +80,16 @@ class Declaration(Node):
 
   def __str__(self):
     m_str  = str(self.name) + " = " + str(self.val)
+    return m_str
+
+class UnaryDeclaration(Node):
+  def __init__(self, name, op, val):
+    self.name = name
+    self.op = op
+    self.val = val
+
+  def __str__(self):
+    m_str = str(self.name) + "= {oper: " + str(self.op) + "} " + str(self.val)
     return m_str
 
 class Matrix(Node):
@@ -203,16 +175,24 @@ def p_declarationlist(t):
   else:
     for x in range(len(t)-1):
       t[0].addDeclaration(t[x+1])
-  #print(t[0])
+  print(t[0])
 
-#TO DO - only matrices work as for now
+#mainly matrices for now
 def p_declaration(t):
   '''declaration : ID '=' matrix ';'
                  | ID '=' valuelist ';' 
                  | ID '=' matrixfunction ";"
+                 | ID '=' expression ";"
+                 | ID '=' '-' ID ';'
+                 | ID '=' ID "'" ';'
                  | ID '[' INTNUM ',' INTNUM ']' '=' value ';' ''' #decalres one matrix cell, sth like this A[1,2] = 0;
   if len(t) == 10:
     t[0] = MatrixCellDeclatration(t[1], t[3], t[5], t[8])
+  elif len(t) == 6:
+    if t[3] == '-':
+      t[0] = UnaryDeclaration(t[1],t[3],t[4])
+    else: 
+      t[0] = UnaryDeclaration(t[1],t[4],t[3])
   else:
     t[0] = Declaration(t[1],t[3])
   #print(t[0])
@@ -222,26 +202,6 @@ def p_matrix(t):
   t[0] = Matrix()
   t[0].addLine(t[2])
   #print(t[0])
-
-#TO_DO zeoroes, ones, eye can be changed to one instance, sth like matrix_function_label
-def p_matrixfunction(t):
-  '''matrixfunction : ZEROES '(' INTNUM ')'
-                    | ONES '(' INTNUM ')'
-                    | EYE '(' INTNUM ')' '''
-  t[0] = MatrixFunction(t[1], t[3])
-  print(t[0])
-
-
-# seems unneccesarry and only makes grammar ambigous
-#def p_matrixlinelist(t):
-#  '''matrixlinelist : matrixlinelist ";" matrixline
-#                    | matrixline '''
-#  mlist = MatrixLineList()
-#  for x in range(len(t)):
-#    if x%2==1:
-#      mlist.addLine(t[1])
-#  t[0]=mlist
-#  #print(t[0])
 
 def p_matrixline(t):
   '''matrixline : matrixline ";" valuelist 
@@ -259,6 +219,35 @@ def p_valuelist(t):
   for x in range(len(t)-1):
     t[0].addValue(Value(t[x+1]))
   #print(*t[0].values) 
+
+#TO_DO zeoroes, ones, eye can be changed to one instance, sth like matrix_function_label
+def p_matrixfunction(t):
+  '''matrixfunction : ZEROES '(' INTNUM ')'
+                    | ONES '(' INTNUM ')'
+                    | EYE '(' INTNUM ')' '''
+  t[0] = MatrixFunction(t[1], t[3])
+  #print(t[0])
+
+def p_expression(t):
+  '''expression : ID
+                | value
+                | '(' expression ')'
+                | expression '+' expression
+                | expression '-' expression
+                | expression '*' expression
+                | expression '/' expression
+                | expression DOTADD expression
+                | expression DOTSUB expression
+                | expression DOTMUL expression
+                | expression DOTDIV expression'''              
+  if len(t) == 2:
+    t[0] = Term(t[1])
+  elif len(t) == 3:
+    t[0] = GroupedExpresion(t[2])
+  else:
+    t[0] = Expresion(t[1],t[2],t[3])
+                  
+
 
 def p_value(t):
   '''value : STRING
