@@ -37,6 +37,16 @@ class DeclarationList(Node):
     m_str = '\n'.join(map(str, self.declarations))
     return m_str
 
+class AssignmentWithOperation(Node):
+  def __init__(self, name, op, val):
+    self.name = name
+    self.op = op
+    self.val = val
+
+  def __str__(self):
+    m_str = str(self.name) + " " + str(self.op) + " " + str(self.val)
+    return m_str
+
 class Expresion(Node):
   def __init__(self, left, op, right):
     self.left = left
@@ -185,6 +195,10 @@ def p_declaration(t):
                  | ID '=' expression ";"
                  | ID '=' '-' ID ';'
                  | ID '=' ID "'" ';'
+                 | ID ADDASSIGN expression ";"
+                 | ID SUBASSIGN expression ";"
+                 | ID MULASSIGN expression ";"
+                 | ID DIVASSIGN expression ";"
                  | ID '[' INTNUM ',' INTNUM ']' '=' value ';' ''' #decalres one matrix cell, sth like this A[1,2] = 0;
   if len(t) == 10:
     t[0] = MatrixCellDeclatration(t[1], t[3], t[5], t[8])
@@ -193,9 +207,13 @@ def p_declaration(t):
       t[0] = UnaryDeclaration(t[1],t[3],t[4])
     else: 
       t[0] = UnaryDeclaration(t[1],t[4],t[3])
+  elif len(t) == 5:
+    t[0] = AssignmentWithOperation(t[1],t[2],t[3])
   else:
     t[0] = Declaration(t[1],t[3])
   #print(t[0])
+
+
 
 def p_matrix(t):
   '''matrix : '[' matrixline ']' '''
@@ -211,22 +229,6 @@ def p_matrixline(t):
     if x%2==1:
       matrixln.addInterior(t[x])
   t[0] = matrixln
-
-def p_valuelist(t):
-  '''valuelist : valuelist ',' value
-               | value'''
-  t[0] = ValueList()
-  for x in range(len(t)-1):
-    t[0].addValue(Value(t[x+1]))
-  #print(*t[0].values) 
-
-#TO_DO zeoroes, ones, eye can be changed to one instance, sth like matrix_function_label
-def p_matrixfunction(t):
-  '''matrixfunction : ZEROES '(' INTNUM ')'
-                    | ONES '(' INTNUM ')'
-                    | EYE '(' INTNUM ')' '''
-  t[0] = MatrixFunction(t[1], t[3])
-  #print(t[0])
 
 def p_expression(t):
   '''expression : ID
@@ -245,9 +247,23 @@ def p_expression(t):
   elif len(t) == 3:
     t[0] = GroupedExpresion(t[2])
   else:
-    t[0] = Expresion(t[1],t[2],t[3])
-                  
+    t[0] = Expresion(t[1],t[2],t[3])                  
 
+def p_valuelist(t):
+  '''valuelist : valuelist ',' value
+               | value'''
+  t[0] = ValueList()
+  for x in range(len(t)-1):
+    t[0].addValue(Value(t[x+1]))
+  #print(*t[0].values) 
+
+#TO_DO zeoroes, ones, eye can be changed to one instance, sth like matrix_function_label
+def p_matrixfunction(t):
+  '''matrixfunction : ZEROES '(' INTNUM ')'
+                    | ONES '(' INTNUM ')'
+                    | EYE '(' INTNUM ')' '''
+  t[0] = MatrixFunction(t[1], t[3])
+  #print(t[0])
 
 def p_value(t):
   '''value : STRING
