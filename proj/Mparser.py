@@ -91,12 +91,47 @@ class BreakInstruction(Node):
 class ContinueInstruction(Node):
     pass
 
+class Declaration(Node):
+  def __init__(self, name, val):
+    self.name = name
+    self.val = val
+
+  def __str__(self):
+    m_str  = str(self.name) + " = " + str(self.val)
+    return m_str
+
+class Matrix(Node):
+  def __init__(self):
+    self.lines = []
+
+  def addLine(self, line):
+    self.lines.append(line)
+
+  def __str__(self):
+    m_str = '\n'.join(map(str, self.lines))
+    return m_str
+
+class MatrixLineList(Node):
+  def __init__(self):
+    self.lines = []
+
+  def addLine(self, line):
+    self.lines.append(line)
+
+  def __str__(self):
+    m_str = '\n'.join(map(str, self.lines))
+    return m_str
+
 class MatrixLine(Node):
   def __init__(self):
     self.interior = []
 
   def addInterior(self, interior):
     self.interior.append(interior)
+
+  def __str__(self):
+    m_str = '\n'.join(map(str, self.interior))
+    return m_str
 
 class ValueList(Node):
   def __init__(self):
@@ -123,15 +158,43 @@ def p_error(p):
     else:
         print("Unexpected end of input")
 
+#heleperek do debugu 
+#  for x in range(len(t)):
+#    print(str(x) + " ---- " + str(t[x]))
+
+
+
+#TO DO - you should be able to declare not only matrices
+def p_declaration(t):
+  '''declaration : ID '=' matrix''' 
+  t[0] = Declaration(t[1],t[3])
+  print(t[0])
+
+def p_matrix(t):
+  '''matrix : '[' matrixline ']' '''
+  t[0] = Matrix()
+  t[0].addLine(t[2])
+  #print(t[0])
+
+# seems unneccesarry and only makes grammar ambigous
+#def p_matrixlinelist(t):
+#  '''matrixlinelist : matrixlinelist ";" matrixline
+#                    | matrixline '''
+#  mlist = MatrixLineList()
+#  for x in range(len(t)):
+#    if x%2==1:
+#      mlist.addLine(t[1])
+#  t[0]=mlist
+#  #print(t[0])
 
 def p_matrixline(t):
-  '''matrixline : '[' matrixline ';' valuelist ']'
-                | '[' valuelist ']' '''
-  t[0] = MatrixLine()
-  interior = ValueList()
-  interior.addValue(t[2])
-  t[0].addInterior(interior)
-  print(*t[0].interior, sep = ", ")
+  '''matrixline : matrixline ";" valuelist 
+                | valuelist '''
+  matrixln = MatrixLine()
+  for x in range(len(t)):
+    if x%2==1:
+      matrixln.addInterior(t[x])
+  t[0] = matrixln
 
 def p_valuelist(t):
   '''valuelist : valuelist ',' value
@@ -149,8 +212,20 @@ def p_value(t):
 
 
 
-
-
-
+'''
+  if t[0] == '['
+    print("sss")
+    interior = ValueList()
+    for x in range(len(t)-1):
+      interior.addValue(Value(t[x+1]))
+    matrix.addInterior(interior)
+  else:
+    interior = ValueList()
+    for x in range(len(t)-1):
+      interior.addValue(Value(t[x]))
+    matrix.addInterior(interior)
+  t[0] = matrix
+  print(*t[0].interior, sep = ", ")
+'''
 
 parser = yacc.yacc()
