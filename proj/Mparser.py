@@ -91,6 +91,26 @@ class BreakInstruction(Node):
 class ContinueInstruction(Node):
     pass
 
+class DeclarationList(Node):
+  def __init__(self):
+    self.declarations = []
+
+  def addDeclaration(self, dec):
+    self.declarations.append(dec)
+
+  def __str__(self):
+    m_str = '\n'.join(map(str, self.declarations))
+    return m_str
+
+class MatrixFunction(Node):
+  def __init__(self, type, arg):
+    self.type = type
+    self.arg = arg
+
+  def __str__(self):
+    m_str = "Function: " + str(self.type) + " arg:" + str(self.arg)
+    return m_str 
+
 class Declaration(Node):
   def __init__(self, name, val):
     self.name = name
@@ -133,6 +153,17 @@ class MatrixLine(Node):
     m_str = '\n'.join(map(str, self.interior))
     return m_str
 
+class MatrixCellDeclatration(Node):
+  def __init__(self, matrixid, row, col, val):
+    self.matrixid = matrixid
+    self.row = row
+    self.col = col
+    self.val = val
+
+  def __str__(self):
+    m_str = "In matrix: " + str(self.matrixid) + ": " + " r:" + str(self.row) + " c:" + str(self.col) + ", change val to:" + str(self.val)
+    return m_str
+
 class ValueList(Node):
   def __init__(self):
     self.values = []
@@ -158,23 +189,48 @@ def p_error(p):
     else:
         print("Unexpected end of input")
 
-#heleperek do debugu 
+#helps me debug
 #  for x in range(len(t)):
 #    print(str(x) + " ---- " + str(t[x]))
 
 
+def p_declarationlist(t):
+  '''declarationlist : declarationlist declaration
+                     | declaration'''
+  t[0] = DeclarationList()
+  if len(t) == 2:
+    t[0].addDeclaration(t[1])
+  else:
+    for x in range(len(t)-1):
+      t[0].addDeclaration(t[x+1])
+  #print(t[0])
 
-#TO DO - you should be able to declare not only matrices
+#TO DO - only matrices work as for now
 def p_declaration(t):
-  '''declaration : ID '=' matrix''' 
-  t[0] = Declaration(t[1],t[3])
-  print(t[0])
+  '''declaration : ID '=' matrix ';'
+                 | ID '=' valuelist ';' 
+                 | ID '=' matrixfunction ";"
+                 | ID '[' INTNUM ',' INTNUM ']' '=' value ';' ''' #decalres one matrix cell, sth like this A[1,2] = 0;
+  if len(t) == 10:
+    t[0] = MatrixCellDeclatration(t[1], t[3], t[5], t[8])
+  else:
+    t[0] = Declaration(t[1],t[3])
+  #print(t[0])
 
 def p_matrix(t):
   '''matrix : '[' matrixline ']' '''
   t[0] = Matrix()
   t[0].addLine(t[2])
   #print(t[0])
+
+#TO_DO zeoroes, ones, eye can be changed to one instance, sth like matrix_function_label
+def p_matrixfunction(t):
+  '''matrixfunction : ZEROES '(' INTNUM ')'
+                    | ONES '(' INTNUM ')'
+                    | EYE '(' INTNUM ')' '''
+  t[0] = MatrixFunction(t[1], t[3])
+  print(t[0])
+
 
 # seems unneccesarry and only makes grammar ambigous
 #def p_matrixlinelist(t):
