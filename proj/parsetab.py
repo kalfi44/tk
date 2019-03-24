@@ -5,9 +5,9 @@ _tabversion = '3.2'
 
 _lr_method = 'LALR'
 
-_lr_signature = b'R\xf1zr|\xba\x8ev2\xfa\xfe\xe2\xeb:\xd0\xc9'
+_lr_signature = b't\x94\xba=\xdd\xed\xa5\xbc\x8c\x06\xb4\xc0\xcdr\xbcV'
     
-_lr_action_items = {'ID':([0,4,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,],[2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,]),'(':([0,4,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,],[4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,]),'INTNUM':([0,4,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,],[5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,]),'FLOATNUM':([0,4,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,],[6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,]),'STRING':([0,4,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,],[7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,]),'$end':([1,2,3,5,6,7,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,],[0,-7,-6,-19,-20,-21,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-1,-2,-3,-4,-5,-18,]),'+':([1,2,3,5,6,7,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,],[8,-7,-6,-19,-20,-21,8,-8,-9,-10,-11,8,8,8,8,8,8,8,8,8,8,8,-18,]),'-':([1,2,3,5,6,7,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,],[9,-7,-6,-19,-20,-21,9,-8,-9,-10,-11,9,9,9,9,9,9,9,9,9,9,9,-18,]),'*':([1,2,3,5,6,7,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,],[10,-7,-6,-19,-20,-21,10,10,10,-10,-11,10,10,10,10,10,10,10,10,10,10,10,-18,]),'/':([1,2,3,5,6,7,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,],[11,-7,-6,-19,-20,-21,11,11,11,-10,-11,11,11,11,11,11,11,11,11,11,11,11,-18,]),'>':([1,2,3,5,6,7,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,],[12,-7,-6,-19,-20,-21,12,-8,-9,-10,-11,None,None,None,None,None,None,12,12,12,12,12,-18,]),'<':([1,2,3,5,6,7,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,],[13,-7,-6,-19,-20,-21,13,-8,-9,-10,-11,None,None,None,None,None,None,13,13,13,13,13,-18,]),'GREATEREQUAL':([1,2,3,5,6,7,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,],[14,-7,-6,-19,-20,-21,14,-8,-9,-10,-11,None,None,None,None,None,None,14,14,14,14,14,-18,]),'LOWEREQUAL':([1,2,3,5,6,7,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,],[15,-7,-6,-19,-20,-21,15,-8,-9,-10,-11,None,None,None,None,None,None,15,15,15,15,15,-18,]),'NOTEQUAL':([1,2,3,5,6,7,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,],[16,-7,-6,-19,-20,-21,16,-8,-9,-10,-11,None,None,None,None,None,None,16,16,16,16,16,-18,]),'EQUAL':([1,2,3,5,6,7,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,],[17,-7,-6,-19,-20,-21,17,-8,-9,-10,-11,None,None,None,None,None,None,17,17,17,17,17,-18,]),'=':([2,],[18,]),'ADDASSIGN':([2,],[19,]),'SUBASSIGN':([2,],[20,]),'MULASSIGN':([2,],[21,]),'DIVASSIGN':([2,],[22,]),')':([2,3,5,6,7,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,],[-7,-6,-19,-20,-21,39,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-1,-2,-3,-4,-5,-18,]),}
+_lr_action_items = {'[':([0,2,],[2,2,]),'$end':([1,10,14,],[0,-2,-1,]),'STRING':([2,9,11,],[6,6,6,]),'INTNUM':([2,9,11,],[7,7,7,]),'FLOATNUM':([2,9,11,],[8,8,8,]),';':([3,10,14,],[9,-2,-1,]),']':([4,5,6,7,8,12,13,],[10,-4,-5,-6,-7,14,-3,]),',':([4,5,6,7,8,12,13,],[11,-4,-5,-6,-7,11,-3,]),}
 
 _lr_action = { }
 for _k, _v in _lr_action_items.items():
@@ -16,7 +16,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'expression':([0,4,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,],[1,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,]),'term':([0,4,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,],[3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,]),}
+_lr_goto_items = {'matrixline':([0,2,],[1,3,]),'valuelist':([2,9,],[4,12,]),'value':([2,9,11,],[5,5,13,]),}
 
 _lr_goto = { }
 for _k, _v in _lr_goto_items.items():
@@ -25,26 +25,12 @@ for _k, _v in _lr_goto_items.items():
        _lr_goto[_x][_k] = _y
 del _lr_goto_items
 _lr_productions = [
-  ("S' -> expression","S'",1,None,None,None),
-  ('expression -> ID = expression','expression',3,'p_expression_assignop','C:\\Users\\Wacek\\Desktop\\Studia!\\kalfas\\proj\\Mparser.py',28),
-  ('expression -> ID ADDASSIGN expression','expression',3,'p_expression_assignop','C:\\Users\\Wacek\\Desktop\\Studia!\\kalfas\\proj\\Mparser.py',29),
-  ('expression -> ID SUBASSIGN expression','expression',3,'p_expression_assignop','C:\\Users\\Wacek\\Desktop\\Studia!\\kalfas\\proj\\Mparser.py',30),
-  ('expression -> ID MULASSIGN expression','expression',3,'p_expression_assignop','C:\\Users\\Wacek\\Desktop\\Studia!\\kalfas\\proj\\Mparser.py',31),
-  ('expression -> ID DIVASSIGN expression','expression',3,'p_expression_assignop','C:\\Users\\Wacek\\Desktop\\Studia!\\kalfas\\proj\\Mparser.py',32),
-  ('expression -> term','expression',1,'p_expression_binop','C:\\Users\\Wacek\\Desktop\\Studia!\\kalfas\\proj\\Mparser.py',40),
-  ('expression -> ID','expression',1,'p_expression_binop','C:\\Users\\Wacek\\Desktop\\Studia!\\kalfas\\proj\\Mparser.py',41),
-  ('expression -> expression + expression','expression',3,'p_expression_binop','C:\\Users\\Wacek\\Desktop\\Studia!\\kalfas\\proj\\Mparser.py',42),
-  ('expression -> expression - expression','expression',3,'p_expression_binop','C:\\Users\\Wacek\\Desktop\\Studia!\\kalfas\\proj\\Mparser.py',43),
-  ('expression -> expression * expression','expression',3,'p_expression_binop','C:\\Users\\Wacek\\Desktop\\Studia!\\kalfas\\proj\\Mparser.py',44),
-  ('expression -> expression / expression','expression',3,'p_expression_binop','C:\\Users\\Wacek\\Desktop\\Studia!\\kalfas\\proj\\Mparser.py',45),
-  ('expression -> expression > expression','expression',3,'p_expression_binop','C:\\Users\\Wacek\\Desktop\\Studia!\\kalfas\\proj\\Mparser.py',46),
-  ('expression -> expression < expression','expression',3,'p_expression_binop','C:\\Users\\Wacek\\Desktop\\Studia!\\kalfas\\proj\\Mparser.py',47),
-  ('expression -> expression GREATEREQUAL expression','expression',3,'p_expression_binop','C:\\Users\\Wacek\\Desktop\\Studia!\\kalfas\\proj\\Mparser.py',48),
-  ('expression -> expression LOWEREQUAL expression','expression',3,'p_expression_binop','C:\\Users\\Wacek\\Desktop\\Studia!\\kalfas\\proj\\Mparser.py',49),
-  ('expression -> expression NOTEQUAL expression','expression',3,'p_expression_binop','C:\\Users\\Wacek\\Desktop\\Studia!\\kalfas\\proj\\Mparser.py',50),
-  ('expression -> expression EQUAL expression','expression',3,'p_expression_binop','C:\\Users\\Wacek\\Desktop\\Studia!\\kalfas\\proj\\Mparser.py',51),
-  ('expression -> ( expression )','expression',3,'p_expression_group','C:\\Users\\Wacek\\Desktop\\Studia!\\kalfas\\proj\\Mparser.py',68),
-  ('term -> INTNUM','term',1,'p_term','C:\\Users\\Wacek\\Desktop\\Studia!\\kalfas\\proj\\Mparser.py',72),
-  ('term -> FLOATNUM','term',1,'p_term','C:\\Users\\Wacek\\Desktop\\Studia!\\kalfas\\proj\\Mparser.py',73),
-  ('term -> STRING','term',1,'p_term','C:\\Users\\Wacek\\Desktop\\Studia!\\kalfas\\proj\\Mparser.py',74),
+  ("S' -> matrixline","S'",1,None,None,None),
+  ('matrixline -> [ matrixline ; valuelist ]','matrixline',5,'p_matrixline','C:\\Users\\user\\Downloads\\tk\\proj\\Mparser.py',128),
+  ('matrixline -> [ valuelist ]','matrixline',3,'p_matrixline','C:\\Users\\user\\Downloads\\tk\\proj\\Mparser.py',129),
+  ('valuelist -> valuelist , value','valuelist',3,'p_valuelist','C:\\Users\\user\\Downloads\\tk\\proj\\Mparser.py',135),
+  ('valuelist -> value','valuelist',1,'p_valuelist','C:\\Users\\user\\Downloads\\tk\\proj\\Mparser.py',136),
+  ('value -> STRING','value',1,'p_value','C:\\Users\\user\\Downloads\\tk\\proj\\Mparser.py',143),
+  ('value -> INTNUM','value',1,'p_value','C:\\Users\\user\\Downloads\\tk\\proj\\Mparser.py',144),
+  ('value -> FLOATNUM','value',1,'p_value','C:\\Users\\user\\Downloads\\tk\\proj\\Mparser.py',145),
 ]
