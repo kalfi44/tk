@@ -1,0 +1,20 @@
+if (i<10)
+{
+	print i;
+	print i;	
+}
+else if(i<20){
+	print k;
+	for j = 1:10     
+	{
+		while (i > 10) {
+    			print i;
+    			print j;
+		}
+	}
+	print k;
+	
+}else{
+	print l;
+	print l;
+}

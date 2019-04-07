@@ -128,5 +128,5 @@ def p_term(p):
             | STRING'''
     p[0] = p[1]
 
-parser = yacc.yacc()
+
 '''

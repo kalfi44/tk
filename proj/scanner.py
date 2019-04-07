@@ -20,6 +20,7 @@ reserved = {
     'return' : 'RETURN',
     'zeroes' : 'ZEROES',
     'ones' : 'ONES',
+    'print' : 'PRINT',
     'eye' : 'EYE',
  }
 
